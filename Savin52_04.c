@@ -1,4 +1,10 @@
-//descending order based on percentage
+/*
+Roll no:52
+Batch:C
+Author Name:Savin Johnson
+Date:2/09/23
+Description:descending order based on percentage
+*/
 #include <stdio.h>
 #include <string.h>
 

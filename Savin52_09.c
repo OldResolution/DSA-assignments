@@ -1,4 +1,10 @@
-//print duplicate elements
+/*
+Roll no:52
+Batch:C
+Author Name:Savin Johnson
+Date:2/09/23
+Description:print duplicate elements
+*/
 #include <stdio.h>
 
 int main() {

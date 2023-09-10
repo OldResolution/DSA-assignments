@@ -1,4 +1,10 @@
-//identical arrays comparison
+/*
+Roll no:52
+Batch:C
+Author Name:Savin Johnson
+Date:2/09/23
+Description:identical arrays comparison
+*/
 #include <stdio.h>
 
 int compare(int arr1[], int arr2[], int size) {

@@ -1,4 +1,10 @@
-//largest element in an array
+/*
+Roll no:52
+Batch:C
+Author Name:Savin Johnson
+Date:2/09/23
+Description:largest element in an array
+*/
 #include<stdio.h> 
 
 int main()

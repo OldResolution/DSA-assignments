@@ -1,4 +1,10 @@
-//menu driven program in array
+/*
+Roll no:52
+Batch:C
+Author Name:Savin Johnson
+Date:2/09/23
+Description:menu driven program in array
+*/
 #include <stdio.h>
 
 #define MAX_SIZE 100

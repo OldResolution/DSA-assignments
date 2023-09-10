@@ -1,5 +1,11 @@
-//print  unique elements
- #include <stdio.h>
+/*
+Roll no:52
+Batch:C
+Author Name:Savin Johnson
+Date:2/09/23
+Description:print  unique elements
+*/
+#include <stdio.h>
 
 int main() {
     int size;

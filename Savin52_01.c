@@ -1,4 +1,10 @@
-//determine if no is in fibonacci sequence
+/*
+Roll no:52
+Batch:C
+Author Name:Savin Johnson
+Date:2/09/23
+Description:determine if no is in fibonacci sequence
+*/
 #include <stdio.h>
   int main() {
         int data, num1 = 0, num2 = 1, temp, flag = 0;
