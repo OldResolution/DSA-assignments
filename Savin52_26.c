@@ -8,53 +8,111 @@ Description:Implementation of operations (insertion,Search,counting of leaf node
 #include <stdio.h>
 #include <stdlib.h>
 
-/* A binary tree node has data, pointer to left child 
-and a pointer to right child */
-struct node 
-{
-	int data;
-	struct node* left;
-	struct node* right;
+struct Node {
+    int data;
+    struct Node* left;
+    struct Node* right;
 };
 
-/* Function to get the count of leaf nodes in a binary tree*/
-unsigned int getLeafCount(struct node* node)
-{
-if(node == NULL)	 
-	return 0;
-if(node->left == NULL && node->right==NULL)	 
-	return 1;		 
-else
-	return getLeafCount(node->left)+
-		getLeafCount(node->right);	 
+struct Node* createNode(int data) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->left = newNode->right = NULL;
+    return newNode;
 }
 
-/* Helper function that allocates a new node with the
-given data and NULL left and right pointers. */
-struct node* newNode(int data) 
-{
-struct node* node = (struct node*)
-					malloc(sizeof(struct node));
-node->data = data;
-node->left = NULL;
-node->right = NULL;
+struct Node* insert(struct Node* root, int data) {
+    if (root == NULL) {
+        return createNode(data);
+    }
 
-return(node);
+    if (data < root->data) {
+        root->left = insert(root->left, data);
+    } else if (data > root->data) {
+        root->right = insert(root->right, data);
+    }
+
+    return root;
 }
 
-/*Driver program to test above functions*/
-int main()
-{
-/*create a tree*/
-struct node *root = newNode(1);
-root->left	 = newNode(2);
-root->right	 = newNode(3);
-root->left->left = newNode(4);
-root->left->right = newNode(5); 
+struct Node* search(struct Node* root, int key) {
+    if (root == NULL || root->data == key) {
+        return root;
+    }
 
-/*get leaf count of the above created tree*/
-printf("Leaf count of the tree is %d", getLeafCount(root));
+    if (key < root->data) {
+        return search(root->left, key);
+    }
 
-getchar();
-return 0;
+    return search(root->right, key);
+}
+
+int countNodes(struct Node* root) {
+    if (root == NULL) {
+        return 0;
+    }
+
+    return 1 + countNodes(root->left) + countNodes(root->right);
+}
+
+int countLeafNodes(struct Node* root) {
+    if (root == NULL) {
+        return 0;
+    }
+
+    if (root->left == NULL && root->right == NULL) {
+        return 1;
+    }
+
+    return countLeafNodes(root->left) + countLeafNodes(root->right);
+}
+
+void displayMenu() {
+    printf("\nBinary Search Tree Menu:\n");
+    printf("1. Insert an element\n");
+    printf("2. Search for an element\n");
+    printf("3. Count total nodes\n");
+    printf("4. Count leaf nodes\n");
+    printf("5. Exit\n");
+    printf("Enter your choice: ");
+}
+
+int main() {
+    struct Node* root = NULL;
+    int choice, data;
+
+    while (1) {
+        displayMenu();
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                printf("Enter the element to insert: ");
+                scanf("%d", &data);
+                root = insert(root, data);
+                break;
+            case 2:
+                printf("Enter the element to search for: ");
+                scanf("%d", &data);
+                struct Node* result = search(root, data);
+                if (result) {
+                    printf("%d found in the BST.\n", data);
+                } else {
+                    printf("%d not found in the BST.\n", data);
+                }
+                break;
+            case 3:
+                printf("Total number of nodes: %d\n", countNodes(root));
+                break;
+            case 4:
+                printf("Number of leaf nodes: %d\n", countLeafNodes(root));
+                break;
+            case 5:
+                exit(0);
+            default:
+                printf("Invalid choice. Please try again.\n");
+        }
+    }
+
+    return 0;
 }
